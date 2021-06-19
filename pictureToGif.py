@@ -9,7 +9,8 @@ def fileNum():
     '''
     Function to get the next file number from the gifs directory
 
-    Input: Void
+    Input: 
+        void
 
     Return:
         int - next file number
@@ -20,13 +21,20 @@ def fileNum():
 
 
 if __name__ == "__main__":
+    # Creating a PiCamera instance. Follow 
+    # https://projects.raspberrypi.org/en/projects/getting-started-with-picamera
+    # to set up camera on a Raspberry Pi
     camera = PiCamera()
 
+    # Temp pictures
     for i in range(2):
         sleep(1)
         camera.capture('/home/pi/Documents/gifCamera/tempPic/test%s.jpg' % i)
 
+    # Images are temporarily stored in tempPic directory
     image_path = Path('tempPic')
+
+    # Getting all images and adding them to a list for the imageio conversion
     images = list(image_path.glob('*.jpg'))
     image_list = []
     for file_name in images:
